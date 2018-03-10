@@ -17,6 +17,7 @@ public class StringIndexMapper extends Mapper<LongWritable, Text, Text, Text> {
 				String s = StringUtils.cleanWord(token.next());
 				if (s.length() > 2) {
 					word = new Text(s);
+					Counter.addIndex(index.toString());
 					context.write(word, index);
 				}
 			}
