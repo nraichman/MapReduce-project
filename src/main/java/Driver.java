@@ -22,7 +22,7 @@ public class Driver {
 		TextOutputFormat.setOutputPath(job, out);
 
 		for (File fileEntry : folder.listFiles()) {
-			if (fileEntry.isFile()) {
+			if (fileEntry.isFile() && !fileEntry.isHidden()) {
 				inp = new Path(fileEntry.getPath());
 		        TextInputFormat.addInputPath(job, inp);
 			}
