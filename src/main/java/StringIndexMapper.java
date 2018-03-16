@@ -13,11 +13,11 @@ public class StringIndexMapper extends Mapper<LongWritable, Text, Text, Text> {
 		if (token.hasNext()) {
 			Text index = new Text(token.next().split(",")[0]);
 			Text word;
+			Counter.addIndex(index.toString());
 			while (token.hasNext()) {
 				String s = StringUtils.cleanWord(token.next());
 				if (s.length() > 2) {
 					word = new Text(s);
-					Counter.addIndex(index.toString());
 					context.write(word, index);
 				}
 			}

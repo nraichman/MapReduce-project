@@ -1,6 +1,6 @@
-import org.tartarus.snowball.ext.englishStemmer;
 import org.apache.lucene.analysis.CharArraySet;
 import org.apache.lucene.analysis.en.EnglishAnalyzer;
+import org.tartarus.snowball.ext.englishStemmer;
 
 
 public class StringUtils {
