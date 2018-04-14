@@ -11,15 +11,20 @@ public class StringIndexMapper extends Mapper<LongWritable, Text, Text, Text> {
 		@SuppressWarnings("resource")
 		Scanner token = new Scanner(value.toString());
 		if (token.hasNext()) {
-			Text index = new Text(token.next().split(",")[0]);
+			int fileIdx = 0;
+			String[] head = token.next().split(",");
+			String fileId = head[0].trim();
+			//String fileLink = head[1];
 			Text word;
-			Counter.addIndex(index.toString());
+			Text wrapper;
 			while (token.hasNext()) {
-				String s = StringUtils.cleanWord(token.next());
+				wrapper = new Text(PositionWrapper.serialize(fileId, fileIdx));
+				String s = StringUtils.cleanWord(token.next().trim());
 				if (s.length() > 2) {
 					word = new Text(s);
-					context.write(word, index);
+					context.write(word, wrapper);  // word, (fileId, fileIdx)
 				}
+				fileIdx += 1;
 			}
 		}
 	}

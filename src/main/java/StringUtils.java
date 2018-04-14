@@ -24,9 +24,9 @@ public class StringUtils {
 		if (s.length() <= 2) {
 			return "";
 		}
-		s = removeStopWords(s);
 		s = removeSymbol(s);
 		s = removeNumber(s);
+		s = removeStopWords(s);
 		s = removeStemming(s);
 		return s;
 	}
@@ -38,7 +38,7 @@ public class StringUtils {
 	}
 	
 	private static String removeSymbol(String s) {
-		return s.replaceAll("[-+.^:,]","");
+		return s.replaceAll("[-+.^:,\t ]","");
 	}
 	
 	private static String removeNumber(String s) {
